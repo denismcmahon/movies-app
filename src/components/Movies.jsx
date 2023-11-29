@@ -1,7 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import moviesData from '../data/movies.json';
 
 const Movies = () => {
+  const navigate = useNavigate();
+  const handleMovieClick = () => {
+    navigate('/movie');
+  };
   const [movies, setMovies] = useState(moviesData.movies);
   console.log(moviesData);
   return (
@@ -17,9 +23,9 @@ const Movies = () => {
             </tr>
           </thead>
           <tbody>
-            {movies.map((movie, index) => (
-              <tr key={movie.title}>
-                <th scope="row">{index + 1}</th>
+            {movies.map((movie) => (
+              <tr key={movie.id} onClick={handleMovieClick} role="button">
+                <th scope="row">{movie.id}</th>
                 <td>{movie.title}</td>
                 <td>{movie.director}</td>
                 <td>{movie.year}</td>
