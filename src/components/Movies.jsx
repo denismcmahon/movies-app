@@ -5,8 +5,8 @@ import moviesData from '../data/movies.json';
 
 const Movies = () => {
   const navigate = useNavigate();
-  const handleMovieClick = () => {
-    navigate('/movie');
+  const handleMovieClick = (movieId) => {
+    navigate(`/movie/${movieId}`);
   };
   const [movies, setMovies] = useState(moviesData.movies);
   console.log(moviesData);
@@ -24,7 +24,7 @@ const Movies = () => {
           </thead>
           <tbody>
             {movies.map((movie) => (
-              <tr key={movie.id} onClick={handleMovieClick} role="button">
+              <tr key={movie.id} onClick={() => handleMovieClick(movie.id)} role="button">
                 <th scope="row">{movie.id}</th>
                 <td>{movie.title}</td>
                 <td>{movie.director}</td>
@@ -32,25 +32,6 @@ const Movies = () => {
               </tr>
             ))}
           </tbody>
-          {/*<tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>*/}
         </table>
       </div>
     </>
