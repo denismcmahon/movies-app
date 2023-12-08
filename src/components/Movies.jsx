@@ -9,7 +9,7 @@ import MovieCard from './MovieCard';
 
 // constants
 const topRatedMoviesUrl = 'movie/top_rated?';
-const BASE_IMG_URL = 'http://image.tmdb.org/t/p/w780/';
+const trendingMoviesUrl = 'trending/movie/day?';
 
 const Movies = () => {
   const navigate = useNavigate();
@@ -17,8 +17,7 @@ const Movies = () => {
   useEffect(() => {
     const fetchMoviesData = async () => {
       try {
-        const data = await fetchMovies(topRatedMoviesUrl);
-        console.log('DM ==> movie data: ', data);
+        const data = await fetchMovies(trendingMoviesUrl);
         setState((prev) => ({ ...prev, movies: data.results }));
       } catch (error) {
         console.log(error);
@@ -34,7 +33,7 @@ const Movies = () => {
 
   const [state, setState] = useState({
     movies: [],
-    limit: 10,
+    limit: 16,
     activePage: 1,
   });
 
@@ -54,26 +53,7 @@ const Movies = () => {
             <MovieCard id={movie.id} title={movie.title} releaseDate={movie.release_date} posterPath={movie.poster_path} />
           ))}
         </ul>
-        {/*<table className="table table-dark table-striped mt-4">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Title</th>
-              <th scope="col">Director</th>
-              <th scope="col">Year</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentMovies.map((movie) => (
-              <tr key={movie.id} onClick={() => handleMovieClick(movie.id)} role="button">
-                <th scope="row">{movie.id}</th>
-                <td>{movie.title}</td>
-                <td>{movie.director}</td>
-                <td>{movie.year}</td>
-              </tr>
-            ))}
-          </tbody>
-            </table>*/}
+
         <Pagination data-bs-theme="dark">
           {[...Array(Math.ceil(state.movies.length / state.limit)).keys()].map((page) => (
             <Pagination.Item key={page + 1} active={page + 1 === state.activePage} onClick={() => handlePageChange(page + 1)}>
