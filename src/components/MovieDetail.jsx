@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import moviesData from '../data/movies.json';
 
-const Movie = () => {
+const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   useEffect(() => {
@@ -13,9 +13,9 @@ const Movie = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="card" style={{ width: '20rem' }}>
-          <img src={movie.posterUrl} width="300" alt={movie.title} />
+      <div className="container" style={{ maxWidth: '1200px' }}>
+        <div className="card mt-4" style={{ width: '100%' }}>
+          <img className="p-4" src={movie.posterUrl} width="300" alt={movie.title} />
           <div className="card-body">
             <h5 className="card-title">{movie.title}</h5>
             <span>
@@ -43,4 +43,4 @@ const Movie = () => {
   );
 };
 
-export default Movie;
+export default MovieDetail;

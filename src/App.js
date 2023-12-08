@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Movies from './components/Movies';
-import Movie from './components/Movie';
+import MovieDetail from './components/MovieDetail';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Movies />} />
-        <Route path="/movie/:id" element={<Movie />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
       </Routes>
     </Router>
   );
